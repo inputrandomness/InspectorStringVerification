@@ -8,11 +8,6 @@
 
 config_version=5
 
-[addons]
-
-inspector_string_verification/directory_file_path="res://test/directory.txt"
-inspector_string_verification/registry_class_path="res://addons/inspector_string_verification/const_stringname_registry_filler.gd"
-
 [application]
 
 config/name="InspectorStringVerification"

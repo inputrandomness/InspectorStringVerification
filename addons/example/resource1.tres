@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="TestingResource" format=3 uid="uid://w0s2ewir5uf7"]
 
-[ext_resource type="Script" uid="uid://c6qg5505iyo3u" path="res://test/testing_resource.gd" id="1_o27jo"]
+[ext_resource type="Script" uid="uid://c6qg5505iyo3u" path="res://addons/example/testing_resource.gd" id="1_o27jo"]
 
 [resource]
 script = ExtResource("1_o27jo")
+my_string_1 = "Bob"
 my_string_2 = "Action"
 metadata/_custom_type_script = "uid://c6qg5505iyo3u"
