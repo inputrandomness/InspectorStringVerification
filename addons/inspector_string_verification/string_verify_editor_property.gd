@@ -34,7 +34,12 @@ var _debug: bool = false # For crazy printing when things go wrong
 # Virtual Overrides
 
 func _init():
-	registry_filler = (load(InspectorStringVerificationEditorPlugin.registry_filler_uid) as GDScript).new()
+	
+	var script := load(InspectorStringVerificationEditorPlugin.registry_filler_uid) as GDScript
+	if not script:
+		printerr("Failed to load StringRegistryFiller script at " + InspectorStringVerificationEditorPlugin.registry_filler_uid)
+		return
+	registry_filler = script.new()
 	directory_path = InspectorStringVerificationEditorPlugin.registry_directory_path
 	
 	print("["+get_edited_property()+"]"+"Initializing propery editor.")
@@ -123,6 +128,8 @@ func get_selected_item()-> int:
 
 ## Place the checkmark icon at the end of the edit box.
 func set_check_position() -> void:
+	if not (check_icon and check_icon.texture): 
+		return
 	var line_rect := line_edit.get_global_rect()
 	check_icon.global_position = Vector2(line_rect.end.x - check_icon.texture.get_size().x, 
 				line_rect.position.y)

@@ -12,7 +12,8 @@ func get_list(directory_file : String) -> Array[String]:
 	var regfile := FileAccess.open(directory_file,FileAccess.READ)
 	if not regfile:
 		var err := FileAccess.get_open_error()
-		printerr("Inspector String Verification failed to open file: " + error_string(err))
+		printerr("Inspector String Verification failed to open directory file: " + error_string(err) +\
+				".\n Be sure correct directory is set in Project Settings.")
 		return []
 	var scripts : Array[Script] 
 	var line_count := 0
