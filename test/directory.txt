@@ -1,0 +1,4 @@
+# Add files to search for stringnames here. Only finds $\s*var\s+VARIABLENAME\s+:\s+StringName
+
+
+uid://venvx6qv07qa
