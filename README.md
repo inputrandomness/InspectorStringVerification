@@ -1,4 +1,4 @@
-# InspectorStringVerification
+# Inspector String Verification
 A Godot inspector plugin for verifying that `Strings` or `Stringnames` typed into exported resource properties in the inspector are contained a list of strings considered valid. 
 
 ## Usage and Behavior
