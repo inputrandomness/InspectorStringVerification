@@ -23,3 +23,6 @@ Settings can be found in `Project Settings > Addons > Inspector String Verificat
 - Add options for specifying only Strings/StringNames
 - Add context menu item to FileSystem to easily add/remove files to/from the directory.
 - Decide whether repopulating the list every time a resource is opened will be problematic for very large lists, and there should be an optional behavior change.
+- Add option to open filter list even when the line_edit is empty.
+- Add option to place list in a scroll container
+- Switch to dictionary based on the list of files (or other options?) and add option to include menubutton above control to allow the user to filter to the specific script
