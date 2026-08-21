@@ -1,0 +1,8 @@
+# Add files to search for stringnames here. The default script ConstStringNameRegistryFiller
+# will read any file listed here and load const StringNames (only) into the registry. 
+# You can create custom registry behavior by overriding StringRegistryFiller with your own
+# script that implements get_list()
+
+# Comments should work like normal and blank lines are skipped
+
+uid://venvx6qv07qa # Points to test_script.gd

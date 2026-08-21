@@ -9,7 +9,7 @@ extends EditorPlugin
 
 ## The path to the directory file containing information for the StringRegistryFiller
 const SETTING_DIRECTORY_FILE_PATH_NAME = "addons/inspector_string_verification/directory_file_path"
-const SETTING_DIRECTORY_FILE_PATH_DEFAULT = "res://addons/example/directory.txt"
+const SETTING_DIRECTORY_FILE_PATH_DEFAULT = "res://addons/inspector_string_verification/example/directory.txt"
 
 ## The path to the source file of the class inheriting StringRegistryFiller to load the registry 
 # from the directory.

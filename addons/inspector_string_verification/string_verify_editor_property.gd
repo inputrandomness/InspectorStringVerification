@@ -145,11 +145,14 @@ func _on_text_changed(new_text : String):
 	var value = new_text.strip_edges()
 	emit_changed(get_edited_property(), value)
 	var items = registry.filter(func (s : String): return s.begins_with(value) )
+	items.sort()
+	
 	menu.clear()
 	if _debug: print("Value is '" + value + "' and item size is " + str(items.size()))
 	
 	## These may not be necessary, but in case things get moved around.
 	var line_rect := line_edit.get_global_rect()
+	
 	check_icon.global_position = Vector2(line_rect.end.x - check_icon.texture.get_size().x, 
 				line_rect.position.y)
 				
