@@ -48,7 +48,7 @@ func _init():
 	
 	add_child(popup_layer)
 	popup_layer.add_child(menu_panel)
-	popup_layer.add_child(check_icon)
+	line_edit.add_child(check_icon)
 	menu_panel.add_child(menu)
 	add_focusable(menu)
 	
