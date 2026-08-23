@@ -1,0 +1,26 @@
+name: Specific Feature Request
+description: Suggest a concrete feature with a clear implementation path
+title: "[Feature] "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: core_concept
+    attributes:
+      label: Core Concept
+      description: Describe the main idea behind the feature and why it is desirable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Implementation Details
+      description: Describe the implementation of the feature in as much detail as possible, both from the user experience and (if possible) code implementation sides.
+    validations:
+      required: true
+
+  - type: textarea
+    id: discussion
+    attributes:
+      label: Other Discussion
+      description: Any other discussion items for this issue that don't fit above?
