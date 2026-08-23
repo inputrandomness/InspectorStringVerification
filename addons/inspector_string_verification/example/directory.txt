@@ -5,4 +5,5 @@
 
 # Comments should work like normal and blank lines are skipped
 
-uid://venvx6qv07qa # Points to test_script.gd
+uid://venvx6qv07qa CATEGORY=Entities # Points to test_script.gd
+uid://drufr5g2qsjvv CATEGORY=Names # Points to some_names.gd

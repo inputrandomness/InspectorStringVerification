@@ -4,8 +4,6 @@
 
 [resource]
 script = ExtResource("1_o27jo")
-my_string_name_1 = "Al"
-my_string_name_2 = "Bobbert"
-my_string_1 = "Bob"
-my_string_2 = "Action"
+my_string_name_1 = "sfsfsdf"
+default_no_cat = "Action"
 metadata/_custom_type_script = "uid://c6qg5505iyo3u"

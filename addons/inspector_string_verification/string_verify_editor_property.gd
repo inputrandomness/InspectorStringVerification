@@ -20,10 +20,18 @@ var menu_panel := PanelContainer.new()
 var menu := ItemList.new()
 var check_icon := TextureRect.new()
 
-var directory_path : String
-var registry_filler : StringRegistryFiller
-
+## Created and filled once by the registry filler when this EditorProperty is instantated. This 
+## means if the list is changed while editing the resource in the insector, the resource will have
+## to be reloaded to update the list. Set by [StringVerificationPlugin] after this handler is created but before adding it.
+## [br][br]
+## This many have been pre-filterd to a category using @export_custom on the property being edited. 
+## See [StringRegistryFiller] and the code in [member StringVerificationPlugin._parse_property].
 var registry : Array[String]
+
+## This may be set by [StringVerificationPlugin_parse_property] based on the plugin settings in PropertySettings.
+var show_on_empty : bool = false
+
+
 var current_value : String
 var updating = false  # Used to avoid making changed while the property is being updated.
 var dropdown_open : bool = false ## For some reason menul_panel.visible is false even when I can see it.
@@ -35,14 +43,6 @@ var _debug: bool = false # For crazy printing when things go wrong
 
 func _init():
 	
-	var script := load(InspectorStringVerificationEditorPlugin.registry_filler_uid) as GDScript
-	if not script:
-		printerr("Failed to load StringRegistryFiller script at " + InspectorStringVerificationEditorPlugin.registry_filler_uid)
-		return
-	registry_filler = script.new()
-	directory_path = InspectorStringVerificationEditorPlugin.registry_directory_path
-	
-	print("["+get_edited_property()+"]"+"Initializing propery editor.")
 	add_child(line_edit)
 	add_focusable(line_edit)
 	
@@ -64,14 +64,15 @@ func _init():
 	
 	refresh_control_text()
 	line_edit.text_changed.connect(_on_text_changed)
-	menu.item_activated.connect(_on_item_clicked)
+	line_edit.focus_entered.connect(func(): _on_text_changed(line_edit.text))
+	menu.item_activated.connect(_on_item_activated)
 	line_edit.focus_exited.connect(_on_control_lost_focus)
 	menu.focus_exited.connect(_on_control_lost_focus)
 	
 	check_icon.texture = EditorInterface.get_editor_theme().get_icon("ImportCheck", "EditorIcons")
 	check_icon.visible = false
 	
-	registry = registry_filler.get_list(directory_path)
+
 	
 # Methods 
 
@@ -158,7 +159,7 @@ func _on_text_changed(new_text : String):
 				
 	check_icon.visible = can_show_verification()
 	
-	if value == "" or items.size() == 0:
+	if (value == "" and not show_on_empty) or items.size() == 0:
 		close_dropdown()
 	elif line_edit.has_focus():
 		
@@ -199,7 +200,7 @@ func _on_text_changed(new_text : String):
 		if _debug: print("Line edit does not have focus.")
 
 ## Called when an item in the filter list is clicked on
-func _on_item_clicked(idx : int) -> void:
+func _on_item_activated(idx : int) -> void:
 	if updating:
 		return
 		
@@ -208,6 +209,8 @@ func _on_item_clicked(idx : int) -> void:
 	refresh_control_text()
 	revert_to_editor()
 	emit_changed(get_edited_property(), current_value)
+	
+	await get_tree().process_frame # The text changing will reopen the list, so avoid that.
 	close_dropdown()
 
 ## Part of the plugin structure, needed to update the property whenever it has changed
