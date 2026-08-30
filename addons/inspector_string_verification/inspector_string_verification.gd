@@ -9,7 +9,8 @@ extends EditorPlugin
 ## the mouse to interact with the list.
 ##
 ## The list of words is provided by a handler extending
-## [StringRegistryFiller] which may support pre-filtering with categories.
+## [StringRegistryFiller] which may define custom behavior. See [ConstStringNameRegistryFiller] for 
+## the default example that supports a variety of usages.
 ## [br][br]
 ## Options: [br]
 ## - [member registry_directory_path] : Path of the directory file with data for sources of strings.[br]
@@ -23,13 +24,7 @@ extends EditorPlugin
 ## just using @export when [member always_on] is true, and or @export_custom with "literal:" should work when
 ## it is false.
 ## [br][br]
-## Usage of the plugin for a specific property can be set, either to use a specific category through @custom_export(PROPERTY_HINT_NONE, hint_string)
-## where hint_string is one of:[br]
-## - "literal:[CATEGORY_NAME]" - and [CATEGORY_NAME] is the string literal name for the category. Use "literal:" if [member always_on] is
-## false and you want this property to use the plugin without any category.[br]
-## - "property:[MEMBER_NAME]" - and [MEMBER_NAME] is the string literal name of a [String] or [StringName] member in the same object that holds the name of the category.[br]
-## - "nolist" - explicitly do not use this plugin when editing this property in the inspector.[br]
-## Any other literal passed as a hint_string to @custom_export will cause the plugin to ignore this property.
+
 
 ## The path to the directory file containing information for the StringRegistryFiller
 const SETTING_DIRECTORY_FILE_PATH_NAME = "addons/inspector_string_verification/directory_file_path"
@@ -43,13 +38,16 @@ const SETTING_REGISTRY_CLASS_PATH_DEFAULT = "uid://q37h33d14w6d"
 ## Whether an empty lineeditor should trigger showing all valid words. For very long lists this
 ## may be undesirable. 
 const SETTING_SHOW_ON_EMPTY_NAME = "addons/inspector_string_verification/show_on_empty"
-const SETTING_SHOW_ON_EMPTY_DEFAULT = false
+const SETTING_SHOW_ON_EMPTY_DEFAULT = true
 
 ## Whether the plugin tried to work for every [String] or [StringName] in the project unless told 
 ## not to by the @export_custom on the property, user should have to explicitly specify with 
 ## @export_custom when the plugin is meant to be used to edit that property in the inspector.
 const SETTING_ALWAYS_ON_NAME = "addons/inspector_string_verification/always_on"
-const SETTING_ALWAYS_ON_DEFAULT = true
+
+## Set to false by default because if it is always on, it will work for literally every 
+## String/StringName including those for built-in properties, which seems potentially dangerous.
+const SETTING_ALWAYS_ON_DEFAULT = false
 
 var plugin = StringVerificationPlugin
 static var registry_filler_uid : String
@@ -57,7 +55,7 @@ static var registry_directory_path : String
 static var show_on_empty : bool
 static var always_on : bool
 
-static var _debug : bool = true # Show debug messages
+static var _debug : bool = false # Show debug messages
 
 func _enable_plugin() -> void:
 	# Add autoloads here.

@@ -4,6 +4,8 @@
 # script that implements get_list()
 
 # Comments should work like normal and blank lines are skipped
+# The only tag currently recognized is LIST=MyListName.
+# See ConstStringNameRegistryFiller implementation for more information.
 
-uid://venvx6qv07qa CATEGORY=Entities # Points to test_script.gd
-uid://drufr5g2qsjvv CATEGORY=Names # Points to some_names.gd
+uid://venvx6qv07qa LIST=Entities # Points to test_script.gd
+uid://drufr5g2qsjvv LIST=Names # Points to some_names.gd

@@ -11,6 +11,7 @@ config_version=5
 [addons]
 
 inspector_string_verification/show_on_empty=true
+inspector_string_verification/always_on=false
 
 [application]
 

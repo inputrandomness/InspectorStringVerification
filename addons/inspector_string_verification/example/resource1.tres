@@ -4,5 +4,9 @@
 
 [resource]
 script = ExtResource("1_o27jo")
-default_no_cat = "Action"
+some_entity = "Concept"
+some_name = "FrankLloydWrong"
+like_enum_string_name = "Earth"
+like_enum_also = "ABC"
+str_ex_enum = "String3"
 metadata/_custom_type_script = "uid://c6qg5505iyo3u"
