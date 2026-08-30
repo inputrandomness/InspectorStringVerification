@@ -1,0 +1,12 @@
+
+const HELLO := &"Hello"
+const GOODBYE := &"Goodbye"
+const UP := &"Up"
+const DOWN := &"Down"
+const LEFT := &"Right"
+const FORWARD := &"Forward"
+const BACKWARD := &"Backward"
+const BACK := &"Back"
+const FRONT := &"Front"
+const UNDER := &"Under"
+const OVER := &"Over"

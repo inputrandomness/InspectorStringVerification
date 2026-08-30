@@ -28,6 +28,8 @@ var check_icon := TextureRect.new()
 ## See [StringRegistryFiller] and the code in [member StringVerificationPlugin._parse_property].
 var registry : Array[String]
 
+var filler : StringRegistryFiller
+
 ## This may be set by [StringVerificationPlugin_parse_property] based on the plugin settings in PropertySettings.
 var show_on_empty : bool = false
 
@@ -64,7 +66,10 @@ func _init():
 	
 	refresh_control_text()
 	line_edit.text_changed.connect(_on_text_changed)
-	line_edit.focus_entered.connect(func(): _on_text_changed(line_edit.text))
+	line_edit.focus_entered.connect(func():
+			if filler.reload_on_focus():
+				registry = filler.get_registry()
+			_on_text_changed(line_edit.text))
 	menu.item_activated.connect(_on_item_activated)
 	line_edit.focus_exited.connect(_on_control_lost_focus)
 	menu.focus_exited.connect(_on_control_lost_focus)

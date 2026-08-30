@@ -41,13 +41,16 @@ func _parse_property(object: Object, type: Variant.Type, name: String, hint_type
 		return false # implicit turn-off
 	
 	var directory_path : String = InspectorStringVerificationEditorPlugin.registry_directory_path
-	var string_list = filler.get_registry(object, hint_string, directory_path)
+	filler.setup(object, hint_string, directory_path)
+
+	var string_list = filler.get_registry()
 	if string_list.size() == 0:
 		return false # Filler did not provide any words to use
 	
 	var editor_property := StringVerifyEditorProperty.new()
 	editor_property.show_on_empty = InspectorStringVerificationEditorPlugin.show_on_empty
 	editor_property.registry = string_list
+	editor_property.filler = filler
 	add_property_editor(name, editor_property)
 	return true
 

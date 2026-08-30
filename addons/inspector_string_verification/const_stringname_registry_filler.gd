@@ -62,6 +62,8 @@ static var _debug : bool = false
 static func is_stringname(s : Variant) -> bool:
 	return typeof(s) == TYPE_STRING_NAME
 
+func reload_on_focus() -> bool:
+	return true
 
 ## Check whether the hint string found in @export_custom is something
 ## this filler is expecting.
@@ -74,7 +76,7 @@ func check_custom_hint(hint_string : String) -> bool:
 
 ## Returns a list of words based on the hint_string provided. An empty list
 ## means do not use the plugin, since there are no strings.
-func get_registry(object : Object, hint_string : String, directory_file : String) -> Array[String]:
+func get_registry() -> Array[String]:
 	var category_name := ""
 	var string_list : Array[String]
 	
@@ -86,7 +88,7 @@ func get_registry(object : Object, hint_string : String, directory_file : String
 		
 	elif hint_string.begins_with(LITERAL_TAG):
 		category_name = hint_string.substr(LITERAL_TAG.length())
-		string_list.assign(load_from_file(directory_file, category_name))
+		string_list.assign(load_from_file(directory_path, category_name))
 		if _debug: print("Using literal category '" + category_name + "'.")
 		
 	elif hint_string.begins_with(MEMBER_TAG):
@@ -97,7 +99,7 @@ func get_registry(object : Object, hint_string : String, directory_file : String
 				 "' to supply the category for editing '" + object.name + "', but no such member was found.")
 			return []
 		else:
-			string_list.assign(load_from_file(directory_file, category_name))
+			string_list.assign(load_from_file(directory_path, category_name))
 			if _debug: print("Using category '" + category_name + "' stored in member '" + category_prop_name + "'.")
 	
 	elif hint_string.begins_with(OPTIONS_TAG):
@@ -111,7 +113,7 @@ func get_registry(object : Object, hint_string : String, directory_file : String
 		string_list.assign(constants.filter(func (c): return c is StringName))
 		
 	else: # By default just load everything in the directory file
-		string_list.assign(load_from_file(directory_file))
+		string_list.assign(load_from_file(directory_path))
 
 	return string_list
 

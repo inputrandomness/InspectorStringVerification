@@ -65,8 +65,9 @@ I *hope* this plugin will also demonstrate a nice example of overriding the insp
 These below are updates to the plugin since last version (0.1.0) that was submitted to Godot Asset Store. 
 I will collect a few updates before resubmitting to store, to avoid spamming.
 The above info may not yet be updated to reflect this, since it is considered in-flux until a new version.
+- Made the popup reload when the LineEdit is focused by default, so that the object does not need to be reloaded in the inspector for the list to change when using `listmember`
 - Changed references from `GDSCript` to `Script` to hopefully support C#.
--  Fixed the popup list remaining open when activating an option by waiting a frame to close it, since item activation changes the entry text, re-triggering the popup list open in the same frame. 
+- Fixed the popup list remaining open when activating an option by waiting a frame to close it, since item activation changes the entry text, re-triggering the popup list open in the same frame. 
 - Default handler `ConstStringNameRegistryFiller`: Implemented multiple usage options as specified in the readme, including control over the word lists loaded for a given property by using `@export_custom(...,hint_string,...)` with one of `options`, `local`, `uselist`, or `listmember`. The class  pre-filters the valid strings list to those in the given list (if provided). Sources are associated with a list name by adding a  `LIST=MyList` tag after a string source in the directory file.
 - The annotation `@export_custom...` is needed when `always_on` is false, but `@export` can be used if it is true and no sublist is desired. Options for usage are specified in the README and demonstrated in the example resource.  Interpretation of the hint string is left to the filler so that user-defined custom implementations can use it as needed.
 - A variety of other minor cleanups and consolidations in the sourcethat don't impact use.

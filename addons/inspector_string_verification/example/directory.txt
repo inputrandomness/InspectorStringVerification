@@ -7,5 +7,6 @@
 # The only tag currently recognized is LIST=MyListName.
 # See ConstStringNameRegistryFiller implementation for more information.
 
-uid://venvx6qv07qa LIST=Entities # Points to test_script.gd
-uid://drufr5g2qsjvv LIST=Names # Points to some_names.gd
+uid://venvx6qv07qa LIST=Entities # Points to entities_list.gd
+uid://drufr5g2qsjvv LIST=Names # Points to names_list.gd
+uid://0rttfoyx7n5s LIST=Others # Points to others_list.gd
