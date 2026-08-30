@@ -52,14 +52,14 @@ Settings can be found in `Project Settings > Addons > Inspector String Verificat
 ## Implementing Custom Fillers
 See the documentation in `StringRegistryFiller` for extending this class and see `ConstStringNameRegistryFiller` as an example. The filler class receives the object being edited, the hint_string provided in the custom export and the location of the directory file and may use that as it wishes to create a list. When an empty list is returned, the plugin silently refuses to load. 
 
-## Using with earlier version of Godot.
-While this is primarily tested on Godot 4.7, usage with older versions should involve relatively minor changes for those interested. Here are some known issues backporting to earlier versions. These are very minor, but there may be other problems since I have not fully tested it: 
+## Using with Earlier Versions of Godot
+While this is primarily tested on Godot 4.7, usage with older versions should involve relatively minor changes for those interested. Here are some known issues back-porting to earlier versions. These are very minor, but there may be other problems since I have not fully tested it: 
 - This plugin uses the `@abstract` annotation introduced in Godot 4.5 for `StringRegistryFiller` which is not strictly needed.
 - It uses `Control.custom_maximum_size` introduced in Godot 4.7 which is probably also not strictly needed.
 - `_parse_property` has the `int` type specified for the PropertyUsageFlags, which earlier versions expect to be `PropertyUsageFlags` but 4.7 does not complain about. 
 
 ## Comments
-I *hope* this addon will also demonstrate a nice example of overriding the inspector editor that can guide other creations, but as (at the time of writing) I'm new to editor plugins and don't have substantive feedback, it may be some time before I am sure of that. I always welcome feedback if the code can be improved, ideas or suggestions, or other constructive comments.
+I *hope* this plugin will also demonstrate a nice example of overriding the inspector editor that can guide other creations, but as (at the time of writing) I'm new to editor plugins and don't have substantive feedback, it may be some time before I am sure of that. I always welcome feedback if the code can be improved, ideas or suggestions, or other constructive comments.
 
 ## Updates
 These below are updates to the plugin since last version (0.1.0) that was submitted to Godot Asset Store. 
