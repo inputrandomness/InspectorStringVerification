@@ -3,6 +3,15 @@ extends Resource
 
 # A sample resource for checking that the verification works in the inspector.
 
+
+const LOCAL1 := &"Local1"
+const LOCAL2 := &"Local2"
+const LOCAL3 := &"Local3"
+const LOCATE := &"Locate"
+const LOCATION := &"Location"
+const LOOKY_LOO := &"Looky Loo"
+const LOU_FERRIGNO := &"Lou Ferrigno"
+
 @export var category : StringName = "Entities"
 
 ## Intended to only be of values in the category stored in [member category].
@@ -32,3 +41,30 @@ var my_string_name_2 : StringName = "Boberio"
 ## talking to someone else with an unrecognized hint_string
 @export_custom(PROPERTY_HINT_NONE, "other value") 
 var unknown_hint : String
+
+## This should use the options provided within the custom export
+## hint string. Works with StringName, not just String
+@export_custom(PROPERTY_HINT_NONE, "options:Earth,Water,Fire,Air,Magic,Divine,Death")
+var like_enum_string_name : StringName
+
+## Use the provided options with a String instead of StringName
+@export_custom(PROPERTY_HINT_NONE, "options:ABC,DEF,GHI")
+var like_enum_also : String
+
+## This should use whatever constants are defined within this
+## file.
+@export_custom(PROPERTY_HINT_NONE, "local")
+var local_consts : StringName
+
+
+## Standard Godot export_enum with int
+@export_enum("String1", "String2", "String3")
+var int_ex_enum : int
+
+## Standard Godot export_enum with String
+@export_enum("String1", "String2", "String3")
+var str_ex_enum : String
+
+## Standard Godot export_enum does not support StringName
+#@export_enum("String1", "String2", "String3")
+#var stringname_ex_enum : StringName
