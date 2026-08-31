@@ -1,17 +1,19 @@
 class_name ConstStringNameRegistryFiller
 extends StringRegistryFiller
 
-## Implementation that specifically looks for constant StringNames in a Script file. [br]
-##
-## Supports a variety of options specified at the individual property level,
-## through [code]@custom_export(PROPERTY_HINT_NONE, hint_string)[/code].[br][br]
+## Implementation that supports a variety of options specified at the individual property level,
+## through [code]@custom_export(PROPERTY_HINT_NONE, hint_string)[/code], but in most usages 
+## only looks for [code]const StringName[/code] data for filling the list.[br][br]
 ## 
 ## Constraining the acceptable words to a specific list is enabled with the
 ## options [code]uselist:ListName[/code] and [code]listmember:OtherProperty[/code] (where 
-## [code]OtherProperty[/code] is another property in the same class whose value at the time of 
-## loading in the editor is [code]"ListName"[/code]. Both require 
-## valid list to a sublist whose line in the directory file has the tag [code]LIST=ListName[/code]. 
+## [code]OtherProperty[/code] is another property in the same class whose value is [code]"ListName"[/code]. 
+## Both will create a list from lines in the directory file matching  the tag [code]LIST=ListName[/code]. 
 ## (Check the example directory.txt file to see usage.)[br][br] 
+##
+## Two other usages obtain the list from within the script defining the object being edited:
+## The keyword [code]local[/code] will load any [code]const StringName[/const] declared in the script, and 
+## the keyword [code]options[/code] allows the user to explicitly type the list in the hint string.
 ##
 ## The following hint_strings can be used:[br]
 ##
@@ -27,7 +29,7 @@ extends StringRegistryFiller
 ## - [code]"local"[/code] - Load all constant [StringName]s from the object being edited. 
 ##[br][br] 
 ## - [code]"nolist"[/code] - explicitly do not use this plugin when editing this property in the inspector.[br]
-##  Any other literal passed as a hint_string to @custom_export will cause the plugin 
+##  Any other literal passed as a hint_string to @custom_export may cause the plugin 
 ##to ignore this property.
 
 const MAX_LINES = 10000 ## Sanity check

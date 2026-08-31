@@ -70,6 +70,7 @@ func _init():
 			if filler.reload_on_focus():
 				registry = filler.get_registry()
 			_on_text_changed(line_edit.text))
+	line_edit.resized.connect(set_check_position)
 	menu.item_activated.connect(_on_item_activated)
 	line_edit.focus_exited.connect(_on_control_lost_focus)
 	menu.focus_exited.connect(_on_control_lost_focus)

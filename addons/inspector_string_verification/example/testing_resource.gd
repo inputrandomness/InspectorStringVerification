@@ -56,7 +56,19 @@ var like_enum_also : String
 @export_custom(PROPERTY_HINT_NONE, "local")
 var local_consts : StringName
 
+@export_group("Nested Types")
 
+## For nested data, Godot passes everything after the first colon in the hint to each
+## nested property.
+@export_custom(PROPERTY_HINT_NONE,":uselist:Names")
+var list_of_names : Array[StringName]
+
+## For dictionaries, a semicolon can separate the key and value information.
+## However, both the key and value still need the ':' in front.
+@export_custom(PROPERTY_HINT_NONE,":uselist:Names;:uselist:Others")
+var a_dict : Dictionary[StringName, String]
+
+@export_group("Standard Godot export_enum")
 ## Standard Godot export_enum with int
 @export_enum("String1", "String2", "String3")
 var int_ex_enum : int

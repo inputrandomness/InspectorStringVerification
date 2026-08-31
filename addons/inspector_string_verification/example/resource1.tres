@@ -5,8 +5,12 @@
 [resource]
 script = ExtResource("1_o27jo")
 category = &"Others"
-some_name = "FrankLloydWrong"
-like_enum_string_name = "Earth"
+some_entity = "Goodbye"
+my_string_name_2 = ""
 like_enum_also = "ABC"
+list_of_names = Array[StringName]([&"Alice", &"Jarnathan", &"Treat"])
+a_dict = Dictionary[StringName, String]({
+&"Alicia": "Back"
+})
 str_ex_enum = "String3"
 metadata/_custom_type_script = "uid://c6qg5505iyo3u"

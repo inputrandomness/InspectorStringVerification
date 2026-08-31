@@ -3,7 +3,7 @@ extends Object
 
 ## Abstract class for filling string list for InspectorStringVerification plugin.[br][br]
 ##
-## Create an inheriting class to override [method get_registry] and [method check_custom_hint] 
+## Create an inheriting class to override the abstract methods
 ## for custom string registry behavior. In the project settings, select that script as the registry 
 ## filler, as well as the path to the directory file. See ConstStringNameRegistryFiller 
 ## as an example.[br][br]
